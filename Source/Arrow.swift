@@ -104,7 +104,7 @@ public func <-- <T: RawRepresentable>(left: inout T, right: JSON?) {
 
 /// Parses optional enums.
 public func <-- <T: RawRepresentable>(left: inout T?, right: JSON?) {
-    var temp: T.RawValue? = nil
+    var temp: T.RawValue?
     parseType(&temp, right: right)
     if let t = temp, let e = T.init(rawValue: t) {
         left = e
@@ -298,7 +298,7 @@ func timeIntervalToDate(_ timeInterval: TimeInterval) -> Date {
 }
 
 func setLeftIfIsResultNonNil<T>(left: inout T, right: JSON?, function: (inout T?, JSON?) -> Void) {
-    var temp: T? = nil
+    var temp: T?
     function(&temp, right)
     if let t = temp {
         left = t
